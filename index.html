@@ -1,0 +1,696 @@
+<html class="scroll-smooth" lang="en" >
+ <head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1" name="viewport" />
+  <title>FAMILY Club Morocco</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: "Roboto", sans-serif;
+      transition: background-color 0.5s, color 0.5s;
+    }
+    .font-display {
+      font-family: "Playfair Display", serif;
+    }
+    /* Professional icon style overrides with distinct colors for light and dark mode */
+    .icon-professional {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.75rem;
+      height: 2.75rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+      transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease,
+        color 0.3s ease;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    /* Light mode icon colors changed to yellow/gold */
+    body:not(.dark) .icon-professional {
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #1f2937;
+      box-shadow: 0 6px 12px rgba(245, 158, 11, 0.6);
+    }
+    body:not(.dark) .icon-professional:hover {
+      background: linear-gradient(135deg, #b45309, #92400e);
+      box-shadow: 0 8px 16px rgba(180, 83, 9, 0.8);
+      transform: scale(1.2);
+      color: #fef3c7;
+    }
+    /* Dark mode icon colors */
+    body.dark .icon-professional {
+      background: linear-gradient(135deg, #facc15, #eab308);
+      color: #1f2937;
+      box-shadow: 0 6px 12px rgba(234, 179, 8, 0.7);
+    }
+    body.dark .icon-professional:hover {
+      background: linear-gradient(135deg, #b45309, #a16207);
+      box-shadow: 0 8px 16px rgba(180, 83, 9, 0.9);
+      transform: scale(1.2);
+      color: #fef3c7;
+    }
+  </style>
+ </head>
+ <body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-700">
+  <header
+    class="fixed w-full z-30 bg-white dark:bg-gray-900 shadow-md dark:shadow-black/50"
+  >
+   <nav
+     class="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 flex items-center justify-between h-16"
+   >
+    <a
+      class="font-display text-2xl text-yellow-500 dark:text-yellow-400 font-bold tracking-wide"
+      href="#"
+      >FAMILY Club Morocco</a
+    >
+    <ul
+      class="hidden md:flex space-x-8 text-yellow-700 dark:text-yellow-300 font-medium"
+    >
+     <li>
+      <a
+        class="hover:text-yellow-500 dark:hover:text-yellow-400 transition"
+        href="#vacances"
+        >Vacances</a
+      >
+     </li>
+     <li>
+      <a
+        class="hover:text-yellow-500 dark:hover:text-yellow-400 transition"
+        href="#shopping"
+        >Shopping</a
+      >
+     </li>
+     <li>
+      <a
+        class="hover:text-yellow-500 dark:hover:text-yellow-400 transition"
+        href="#spa"
+        >Spa</a
+      >
+     </li>
+     <li>
+      <a
+        class="hover:text-yellow-500 dark:hover:text-yellow-400 transition"
+        href="#sport"
+        >Sport</a
+      >
+     </li>
+     <li>
+      <a
+        class="hover:text-yellow-500 dark:hover:text-yellow-400 transition"
+        href="#about"
+        >About</a
+      >
+     </li>
+    </ul>
+    <button
+      aria-label="Toggle Dark Mode"
+      class="ml-4 p-2 rounded-md icon-professional focus:outline-none focus:ring-2 focus:ring-yellow-500"
+      id="darkModeToggle"
+      title="Toggle Dark Mode"
+    >
+     <i class="fas fa-moon"></i>
+    </button>
+    <button
+      aria-label="Open Menu"
+      class="md:hidden ml-4 p-2 rounded-md icon-professional focus:outline-none focus:ring-2 focus:ring-yellow-500"
+      id="mobileMenuButton"
+      title="Open Menu"
+    >
+     <i class="fas fa-bars"></i>
+    </button>
+   </nav>
+   <div
+     class="md:hidden bg-white dark:bg-gray-900 shadow-lg absolute w-full top-16 left-0 transform scale-y-0 origin-top transition-transform duration-300 ease-in-out"
+     id="mobileMenu"
+   >
+    <ul class="flex flex-col space-y-4 p-6 text-yellow-700 dark:text-yellow-300 font-medium">
+     <li>
+      <a
+        class="block hover:text-yellow-500 dark:hover:text-yellow-400 transition"
+        href="#vacances"
+        onclick="closeMobileMenu()"
+        >Vacances</a
+      >
+     </li>
+     <li>
+      <a
+        class="block hover:text-yellow-500 dark:hover:text-yellow-400 transition"
+        href="#shopping"
+        onclick="closeMobileMenu()"
+        >Shopping</a
+      >
+     </li>
+     <li>
+      <a
+        class="block hover:text-yellow-500 dark:hover:text-yellow-400 transition"
+        href="#spa"
+        onclick="closeMobileMenu()"
+        >Spa</a
+      >
+     </li>
+     <li>
+      <a
+        class="block hover:text-yellow-500 dark:hover:text-yellow-400 transition"
+        href="#sport"
+        onclick="closeMobileMenu()"
+        >Sport</a
+      >
+     </li>
+     <li>
+      <a
+        class="block hover:text-yellow-500 dark:hover:text-yellow-400 transition"
+        href="#about"
+        onclick="closeMobileMenu()"
+        >About</a
+      >
+     </li>
+    </ul>
+   </div>
+  </header>
+  <main class="pt-20">
+   <section
+     class="relative bg-gradient-to-br from-yellow-700 via-yellow-900 to-yellow-950 text-white min-h-[80vh] flex flex-col justify-center items-center px-6 text-center overflow-hidden"
+   >
+    <img
+      alt="Luxurious Moroccan club entrance with elegant lighting and traditional Moroccan architecture at dusk"
+      class="absolute inset-0 w-full h-full object-cover opacity-30 -z-10"
+      height="800"
+      loading="lazy"
+      src="https://storage.googleapis.com/a1aa/image/40f4aad1-1f2d-422f-bcef-ece0e0d703b8.jpg"
+      width="1200"
+    />
+    <h1
+      class="font-display text-5xl sm:text-6xl md:text-7xl font-extrabold drop-shadow-lg animate-fadeInDown"
+    >
+     Your Premier FAMILY Club in Morocco
+    </h1>
+    <p
+      class="mt-6 max-w-3xl text-lg sm:text-xl md:text-2xl font-light drop-shadow-md animate-fadeInUp"
+    >
+     Offering exclusive Vacances, Shopping, Spa, and Sport experiences.
+     Headquartered in Tetouan, we help you discover the best hotels,
+     restaurants, spas, shopping, beaches, and pools across all Moroccan
+     cities.
+    </p>
+    <a
+      class="mt-10 inline-block bg-yellow-600 hover:bg-yellow-700 dark:bg-yellow-500 dark:hover:bg-yellow-600 text-white font-semibold px-8 py-4 rounded-lg shadow-lg transition transform hover:scale-105 animate-bounce"
+      href="#vacances"
+      >Explore Now</a
+    >
+   </section>
+   <section class="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 py-16" id="vacances">
+    <h2
+      class="font-display text-4xl text-yellow-700 dark:text-yellow-400 mb-8 text-center"
+    >
+     Vacances
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+     <article
+       class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+     >
+      <img
+        alt="A luxury beach resort in Morocco with turquoise water, white sand beach, and palm trees under a clear blue sky"
+        class="w-full h-48 object-cover"
+        height="400"
+        loading="lazy"
+        src="https://storage.googleapis.com/a1aa/image/fb91fb86-b81c-494d-38f6-18bd9cf1034c.jpg"
+        width="600"
+      />
+      <div class="p-6">
+       <h3 class="text-xl font-semibold text-yellow-700 dark:text-yellow-300 mb-2">
+        Beach Resorts
+       </h3>
+       <p class="text-gray-700 dark:text-gray-300 text-sm">
+        Experience the finest beach resorts along Morocco’s stunning
+        coastline, perfect for relaxation and luxury.
+       </p>
+      </div>
+     </article>
+     <article
+       class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+     >
+      <img
+        alt="A serene mountain retreat in Morocco with traditional stone houses surrounded by green hills and blue sky"
+        class="w-full h-48 object-cover"
+        height="400"
+        loading="lazy"
+        src="https://storage.googleapis.com/a1aa/image/0dad2311-53be-4938-0d20-06c69d0d703c.jpg"
+        width="600"
+      />
+      <div class="p-6">
+       <h3 class="text-xl font-semibold text-yellow-700 dark:text-yellow-300 mb-2">
+        Mountain Retreats
+       </h3>
+       <p class="text-gray-700 dark:text-gray-300 text-sm">
+        Discover peaceful mountain retreats offering breathtaking views and
+        exclusive comfort.
+       </p>
+      </div>
+     </article>
+     <article
+       class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+     >
+      <img
+        alt="A luxury hotel in Tetouan city center with modern architecture and Moroccan decorative elements"
+        class="w-full h-48 object-cover"
+        height="400"
+        loading="lazy"
+        src="https://storage.googleapis.com/a1aa/image/795d7655-41cd-466f-1448-1370d6ef4cac.jpg"
+        width="600"
+      />
+      <div class="p-6">
+       <h3 class="text-xl font-semibold text-yellow-700 dark:text-yellow-300 mb-2">
+        City Hotels
+       </h3>
+       <p class="text-gray-700 dark:text-gray-300 text-sm">
+        Stay in the heart of Moroccan cities with our selection of luxury
+        hotels and premium services.
+       </p>
+      </div>
+     </article>
+    </div>
+   </section>
+   <section class="bg-yellow-50 dark:bg-gray-800 py-16" id="shopping">
+    <div class="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
+     <h2
+       class="font-display text-4xl text-yellow-700 dark:text-yellow-400 mb-8 text-center"
+     >
+      Shopping
+     </h2>
+     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+      <article
+        class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+      >
+       <img
+         alt="Traditional Moroccan souk with colorful textiles, lanterns, and spices displayed in a vibrant market"
+         class="w-full h-48 object-cover"
+         height="400"
+         loading="lazy"
+         src="https://storage.googleapis.com/a1aa/image/f2508e7e-83f5-486f-6314-90f4ffd28f77.jpg"
+         width="400"
+       />
+       <div class="p-4">
+        <h3 class="text-lg font-semibold text-yellow-700 dark:text-yellow-300 mb-1">
+         Moroccan Souks
+        </h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">
+         Explore vibrant souks filled with authentic Moroccan crafts,
+         textiles, and spices.
+        </p>
+       </div>
+      </article>
+      <article
+        class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+      >
+       <img
+         alt="Modern luxury shopping mall in Casablanca with high-end boutiques and elegant interior design"
+         class="w-full h-48 object-cover"
+         height="400"
+         loading="lazy"
+         src="https://storage.googleapis.com/a1aa/image/2b6fdfef-2eff-44ea-8370-0e80e6b0338f.jpg"
+         width="400"
+       />
+       <div class="p-4">
+        <h3 class="text-lg font-semibold text-yellow-700 dark:text-yellow-300 mb-1">
+         Luxury Malls
+        </h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">
+         Visit upscale shopping malls offering international luxury brands
+         and exclusive collections.
+        </p>
+       </div>
+      </article>
+      <article
+        class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+      >
+       <img
+         alt="Artisan workshops in Marrakech with craftsmen creating traditional Moroccan pottery and leather goods"
+         class="w-full h-48 object-cover"
+         height="400"
+         loading="lazy"
+         src="https://storage.googleapis.com/a1aa/image/91c0739e-2573-4600-df4a-694db5fbf586.jpg"
+         width="400"
+       />
+       <div class="p-4">
+        <h3 class="text-lg font-semibold text-yellow-700 dark:text-yellow-300 mb-1">
+         Artisan Workshops
+        </h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">
+         Discover handcrafted Moroccan goods made by skilled artisans in
+         traditional workshops.
+        </p>
+       </div>
+      </article>
+      <article
+        class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+      >
+       <img
+         alt="Elegant designer boutiques in Rabat showcasing modern Moroccan fashion and accessories"
+         class="w-full h-48 object-cover"
+         height="400"
+         loading="lazy"
+         src="https://storage.googleapis.com/a1aa/image/4713f0d7-6787-41b0-e0c5-48d07c10fb53.jpg"
+         width="400"
+       />
+       <div class="p-4">
+        <h3 class="text-lg font-semibold text-yellow-700 dark:text-yellow-300 mb-1">
+         Designer Boutiques
+        </h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">
+         Shop exclusive Moroccan designer fashion and accessories in stylish
+         boutiques.
+        </p>
+       </div>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section class="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 py-16" id="spa">
+    <h2
+      class="font-display text-4xl text-yellow-700 dark:text-yellow-400 mb-8 text-center"
+    >
+     Spa
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+     <article
+       class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+     >
+      <img
+        alt="Traditional Moroccan hammam spa with steam room and intricate tile work"
+        class="w-full h-48 object-cover"
+        height="400"
+        loading="lazy"
+        src="https://storage.googleapis.com/a1aa/image/d50341ae-d4f1-4cf3-cc1c-138478f15298.jpg"
+        width="600"
+      />
+      <div class="p-6">
+       <h3 class="text-xl font-semibold text-yellow-700 dark:text-yellow-300 mb-2">
+        Hammam Experience
+       </h3>
+       <p class="text-gray-700 dark:text-gray-300 text-sm">
+        Indulge in authentic Moroccan hammam treatments with steam baths and
+        natural scrubs.
+       </p>
+      </div>
+     </article>
+     <article
+       class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+     >
+      <img
+        alt="Luxury spa resort pool area with loungers, palm trees, and serene water features"
+        class="w-full h-48 object-cover"
+        height="400"
+        loading="lazy"
+        src="https://storage.googleapis.com/a1aa/image/6d182f2f-c3a7-42bb-2454-e4905e092d3b.jpg"
+        width="600"
+      />
+      <div class="p-6">
+       <h3 class="text-xl font-semibold text-yellow-700 dark:text-yellow-300 mb-2">
+        Resort Spas
+       </h3>
+       <p class="text-gray-700 dark:text-gray-300 text-sm">
+        Relax in world-class resort spas offering massages, facials, and
+        wellness therapies.
+       </p>
+      </div>
+     </article>
+     <article
+       class="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+     >
+      <img
+        alt="Modern spa interior decorated with Moroccan patterns, soft lighting, and comfortable treatment rooms"
+        class="w-full h-48 object-cover"
+        height="400"
+        loading="lazy"
+        src="https://storage.googleapis.com/a1aa/image/e66d4bf7-6a30-406a-33a7-0dcae02b77a4.jpg"
+        width="600"
+      />
+      <div class="p-6">
+       <h3 class="text-xl font-semibold text-yellow-700 dark:text-yellow-300 mb-2">
+        Urban Spas
+       </h3>
+       <p class="text-gray-700 dark:text-gray-300 text-sm">
+        Enjoy contemporary spa experiences in Moroccan cities with a blend of
+        tradition and modernity.
+       </p>
+      </div>
+     </article>
+    </div>
+   </section>
+   <section class="bg-yellow-50 dark:bg-gray-800 py-16" id="sport">
+    <div class="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
+     <h2
+       class="font-display text-4xl text-yellow-700 dark:text-yellow-400 mb-8 text-center"
+     >
+      Sport
+     </h2>
+     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+      <article
+        class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+      >
+       <img
+         alt="A pristine golf course in Morocco with green fairways, palm trees, and a clear blue sky"
+         class="w-full h-48 object-cover"
+         height="400"
+         loading="lazy"
+         src="https://storage.googleapis.com/a1aa/image/359a911d-5cf5-4c2a-1634-8081ecffa7df.jpg"
+         width="400"
+       />
+       <div class="p-4">
+        <h3 class="text-lg font-semibold text-yellow-700 dark:text-yellow-300 mb-1">
+         Golf
+        </h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">
+         Play on world-class golf courses set in stunning Moroccan landscapes.
+        </p>
+       </div>
+      </article>
+      <article
+        class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+      >
+       <img
+         alt="Beach volleyball game on a sunny Moroccan beach with players jumping and cheering"
+         class="w-full h-48 object-cover"
+         height="400"
+         loading="lazy"
+         src="https://storage.googleapis.com/a1aa/image/5197159c-58e0-48ca-b95e-ec09ce281d04.jpg"
+         width="400"
+       />
+       <div class="p-4">
+        <h3 class="text-lg font-semibold text-yellow-700 dark:text-yellow-300 mb-1">
+         Beach Volleyball
+        </h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">
+         Enjoy active beach volleyball sessions on Morocco’s beautiful sandy
+         shores.
+        </p>
+       </div>
+      </article>
+      <article
+        class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+      >
+       <img
+         alt="Modern tennis courts in Morocco with players competing under bright sunlight"
+         class="w-full h-48 object-cover"
+         height="400"
+         loading="lazy"
+         src="https://storage.googleapis.com/a1aa/image/3ce6297b-9053-4776-2cc0-669687fcc495.jpg"
+         width="400"
+       />
+       <div class="p-4">
+        <h3 class="text-lg font-semibold text-yellow-700 dark:text-yellow-300 mb-1">
+         Tennis
+        </h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">
+         Access premium tennis courts and coaching in various Moroccan cities.
+        </p>
+       </div>
+      </article>
+      <article
+        class="bg-white dark:bg-gray-900 rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300"
+      >
+       <img
+         alt="Equestrian center in Morocco with riders on horseback and traditional Moroccan stables"
+         class="w-full h-48 object-cover"
+         height="400"
+         loading="lazy"
+         src="https://storage.googleapis.com/a1aa/image/27bb929b-f990-4774-74a3-5be9dcb79f6d.jpg"
+         width="400"
+       />
+       <div class="p-4">
+        <h3 class="text-lg font-semibold text-yellow-700 dark:text-yellow-300 mb-1">
+         Equestrian
+        </h3>
+        <p class="text-gray-700 dark:text-gray-300 text-sm">
+         Experience horseback riding and equestrian events in scenic Moroccan
+         locations.
+        </p>
+       </div>
+      </article>
+     </div>
+    </div>
+   </section>
+   <section
+     class="max-w-4xl mx-auto px-6 sm:px-12 lg:px-16 py-16 text-center"
+     id="about"
+   >
+    <h2
+      class="font-display text-4xl text-yellow-700 dark:text-yellow-400 mb-6"
+    >
+     About Us
+    </h2>
+    <p class="text-gray-700 dark:text-gray-300 text-lg leading-relaxed max-w-3xl mx-auto">
+     Headquartered in Tetouan, Luxury Club Morocco is dedicated to curating
+     the finest experiences in Vacances, Shopping, Spa, and Sport across all
+     Moroccan cities. We connect you with the best hotels, restaurants, spas,
+     shopping destinations, beaches, and pools, ensuring your stay is nothing
+     short of extraordinary.
+    </p>
+    <img
+      alt="The Luxury Club Morocco team posing in front of their headquarters building in Tetouan with a modern and welcoming atmosphere"
+      class="mt-10 rounded-lg shadow-lg mx-auto w-full max-w-3xl object-cover"
+      height="400"
+      loading="lazy"
+      src="https://storage.googleapis.com/a1aa/image/f8726f54-aa06-45f1-44df-b48d2114e627.jpg"
+      width="800"
+    />
+   </section>
+  </main>
+  <footer class="bg-yellow-900 dark:bg-yellow-800 text-yellow-200 py-8 mt-16">
+   <div
+     class="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0"
+   >
+    <p class="text-sm">© 2024 Luxury Club Morocco. All rights reserved.</p>
+    <div class="flex space-x-6 text-xl">
+     <a
+       aria-label="Facebook"
+       class="hover:text-yellow-400 transition icon-professional"
+       href="https://facebook.com"
+       rel="noopener"
+       target="_blank"
+       title="Facebook"
+       ><i class="fab fa-facebook-f"></i
+     ></a>
+     <a
+       aria-label="Twitter"
+       class="hover:text-yellow-400 transition icon-professional"
+       href="https://twitter.com"
+       rel="noopener"
+       target="_blank"
+       title="Twitter"
+       ><i class="fab fa-twitter"></i
+     ></a>
+     <a
+       aria-label="Instagram"
+       class="hover:text-yellow-400 transition icon-professional"
+       href="https://instagram.com"
+       rel="noopener"
+       target="_blank"
+       title="Instagram"
+       ><i class="fab fa-instagram"></i
+     ></a>
+     <a
+       aria-label="LinkedIn"
+       class="hover:text-yellow-400 transition icon-professional"
+       href="https://linkedin.com"
+       rel="noopener"
+       target="_blank"
+       title="LinkedIn"
+       ><i class="fab fa-linkedin-in"></i
+     ></a>
+    </div>
+   </div>
+  </footer>
+  <script>
+    const darkModeToggle = document.getElementById("darkModeToggle");
+    const htmlEl = document.documentElement;
+    const mobileMenuButton = document.getElementById("mobileMenuButton");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    // Load dark mode preference from localStorage
+    if (
+      localStorage.getItem("theme") === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      htmlEl.classList.add("dark");
+      darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    } else {
+      htmlEl.classList.remove("dark");
+      darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+    }
+
+    darkModeToggle.addEventListener("click", () => {
+      if (htmlEl.classList.contains("dark")) {
+        htmlEl.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+        darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+      } else {
+        htmlEl.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+        darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+      }
+    });
+
+    mobileMenuButton.addEventListener("click", () => {
+      if (mobileMenu.classList.contains("scale-y-100")) {
+        closeMobileMenu();
+      } else {
+        openMobileMenu();
+      }
+    });
+
+    function openMobileMenu() {
+      mobileMenu.classList.remove("scale-y-0");
+      mobileMenu.classList.add("scale-y-100");
+    }
+
+    function closeMobileMenu() {
+      mobileMenu.classList.remove("scale-y-100");
+      mobileMenu.classList.add("scale-y-0");
+    }
+
+    // Close mobile menu on resize if desktop
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 768) {
+        closeMobileMenu();
+      }
+    });
+
+    // Animations with Tailwind keyframes
+    tailwind.config = {
+      theme: {
+        extend: {
+          animation: {
+            fadeInDown: "fadeInDown 1s ease forwards",
+            fadeInUp: "fadeInUp 1s ease forwards",
+            bounce: "bounce 2s infinite",
+          },
+          keyframes: {
+            fadeInDown: {
+              "0%": { opacity: "0", transform: "translateY(-20px)" },
+              "100%": { opacity: "1", transform: "translateY(0)" },
+            },
+            fadeInUp: {
+              "0%": { opacity: "0", transform: "translateY(20px)" },
+              "100%": { opacity: "1", transform: "translateY(0)" },
+            },
+          },
+        },
+      },
+    };
+  </script>
+ </body>
+</html>
