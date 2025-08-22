@@ -125,22 +125,34 @@
             </a>
           </li>
         </ul>
-        <button
-          aria-label="Basculer le mode sombre"
-          class="ml-4 p-2 rounded-md icon-professional focus:outline-none focus:ring-2 focus:ring-yellow-500"
-          id="darkModeToggle"
-          title="Basculer le mode sombre"
-        >
-          <i class="fas fa-moon"></i>
-        </button>
-        <button
-          aria-label="Ouvrir le menu"
-          class="md:hidden ml-4 p-2 rounded-md icon-professional focus:outline-none focus:ring-2 focus:ring-yellow-500"
-          id="mobileMenuButton"
-          title="Ouvrir le menu"
-        >
-          <i class="fas fa-bars"></i>
-        </button>
+        <div class="flex items-center space-x-2">
+          <select
+            id="languageSelect"
+            aria-label="Choisir la langue"
+            class="rounded-md border border-yellow-600 dark:border-yellow-400 bg-yellow-100 dark:bg-yellow-900 text-yellow-900 dark:text-yellow-300 font-semibold px-3 py-1 focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            title="Choisir la langue"
+          >
+            <option value="fr" selected>Français</option>
+            <option value="en">English</option>
+            <option value="frs">Français (Suisse)</option>
+          </select>
+          <button
+            aria-label="Basculer le mode sombre"
+            class="p-2 rounded-md icon-professional focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            id="darkModeToggle"
+            title="Basculer le mode sombre"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+          <button
+            aria-label="Ouvrir le menu"
+            class="md:hidden p-2 rounded-md icon-professional focus:outline-none focus:ring-2 focus:ring-yellow-500"
+            id="mobileMenuButton"
+            title="Ouvrir le menu"
+          >
+            <i class="fas fa-bars"></i>
+          </button>
+        </div>
       </nav>
       <div
         class="md:hidden bg-white dark:bg-gray-900 shadow-lg absolute w-full top-16 left-0 transform scale-y-0 origin-top transition-transform duration-300 ease-in-out"
@@ -199,6 +211,18 @@
               <span>Contact</span>
             </a>
           </li>
+          <li>
+            <select
+              id="languageSelectMobile"
+              aria-label="Choisir la langue"
+              class="rounded-md border border-yellow-600 dark:border-yellow-400 bg-yellow-100 dark:bg-yellow-900 text-yellow-900 dark:text-yellow-300 font-semibold px-3 py-1 focus:outline-none focus:ring-2 focus:ring-yellow-500 w-full"
+              title="Choisir la langue"
+            >
+              <option value="fr" selected>Français</option>
+              <option value="en">English</option>
+              <option value="frs">Français (Suisse)</option>
+            </select>
+          </li>
         </ul>
       </div>
     </header>
@@ -214,18 +238,29 @@
           src="https://storage.googleapis.com/a1aa/image/40f4aad1-1f2d-422f-bcef-ece0e0d703b8.jpg"
           width="1200"
         />
+        <video
+          class="absolute top-4 left-1/2 transform -translate-x-1/2 w-full max-w-4xl rounded-lg shadow-lg z-10"
+          controls
+          preload="metadata"
+          aria-label="Vidéo promotionnelle du FAMILY Club Maroc montrant des activités et paysages marocains"
+        >
+          <source
+            src="https://placehold.co/1280x720/mp4?text=Vidéo+Promotionnelle+FAMILY+Club+Maroc"
+            type="video/mp4"
+          />
+          Votre navigateur ne supporte pas la lecture de vidéos.
+        </video>
         <h1
-          class="font-display text-5xl sm:text-6xl md:text-7xl font-extrabold drop-shadow-lg animate-fadeInDown"
+          class="font-display text-5xl sm:text-6xl md:text-7xl font-extrabold drop-shadow-lg animate-fadeInDown mt-[280px]"
         >
           Votre Club FAMILY de premier plan au Maroc
         </h1>
         <p
           class="mt-6 max-w-3xl text-lg sm:text-xl md:text-2xl font-light drop-shadow-md animate-fadeInUp"
         >
-           sport.
-Basés au Maroc, nous vous aidons à découvrir les meilleurs hôtels, restaurants, spas, boutiques, plages et piscines dans toutes les villes du royaume."
-
-
+          sport. Basés au Maroc, nous vous aidons à découvrir les meilleurs hôtels,
+          restaurants, spas, boutiques, plages et piscines dans toutes les villes
+          du royaume.
         </p>
         <a
           class="mt-10 inline-block bg-yellow-600 hover:bg-yellow-700 dark:bg-yellow-500 dark:hover:bg-yellow-600 text-white font-semibold px-8 py-4 rounded-lg shadow-lg transition transform hover:scale-105 animate-bounce"
@@ -719,6 +754,8 @@ Basés au Maroc, nous vous aidons à découvrir les meilleurs hôtels, restauran
       const htmlEl = document.documentElement;
       const mobileMenuButton = document.getElementById("mobileMenuButton");
       const mobileMenu = document.getElementById("mobileMenu");
+      const languageSelect = document.getElementById("languageSelect");
+      const languageSelectMobile = document.getElementById("languageSelectMobile");
 
       // Charger la préférence du mode sombre depuis localStorage
       if (
@@ -769,6 +806,131 @@ Basés au Maroc, nous vous aidons à découvrir les meilleurs hôtels, restauran
           closeMobileMenu();
         }
       });
+
+      // Synchroniser les sélecteurs de langue
+      function syncLanguageSelects(value) {
+        languageSelect.value = value;
+        languageSelectMobile.value = value;
+        updateLanguage(value);
+      }
+
+      languageSelect.addEventListener("change", (e) => {
+        syncLanguageSelects(e.target.value);
+      });
+
+      languageSelectMobile.addEventListener("change", (e) => {
+        syncLanguageSelects(e.target.value);
+      });
+
+      // Texte traduit pour les sections principales
+      const translations = {
+        fr: {
+          vacances: "Vacances",
+          shopping: "Shopping",
+          spa: "Spa",
+          sport: "Sport",
+          about: "À propos",
+          contact: "Contact",
+          explore: "Explorez Maintenant",
+          headerTitle: "Votre Club FAMILY de premier plan au Maroc",
+          headerDesc:
+            "sport. Basés au Maroc, nous vous aidons à découvrir les meilleurs hôtels, restaurants, spas, boutiques, plages et piscines dans toutes les villes du royaume.",
+          aboutTitle: "À propos de nous",
+          aboutDesc:
+            "Basé à Tétouan, Family Club Maroc est dédié à la création des meilleures expériences en Vacances, Shopping, Spa et Sport dans toutes les villes marocaines. Nous vous connectons avec les meilleurs hôtels, restaurants, spas, destinations shopping, plages et piscines, garantissant un séjour exceptionnel.",
+          contactTitle: "Contactez-nous",
+          contactAddress:
+            "Av. Mohamed V Kissariat Mohamed V 2ème Étages n°3, Tétouan, Maroc",
+          contactPhone: "+212 531‑276392",
+          contactEmail: "goldenglowevents@gmail.com",
+          contactBtn: "Contactez-moi",
+        },
+        en: {
+          vacances: "Holidays",
+          shopping: "Shopping",
+          spa: "Spa",
+          sport: "Sports",
+          about: "About Us",
+          contact: "Contact",
+          explore: "Explore Now",
+          headerTitle: "Your Premier FAMILY Club in Morocco",
+          headerDesc:
+            "Sports. Based in Morocco, we help you discover the best hotels, restaurants, spas, shops, beaches, and pools across all cities in the kingdom.",
+          aboutTitle: "About Us",
+          aboutDesc:
+            "Based in Tetouan, Family Club Morocco is dedicated to creating the best experiences in Holidays, Shopping, Spa, and Sports across all Moroccan cities. We connect you with the best hotels, restaurants, spas, shopping destinations, beaches, and pools, ensuring an exceptional stay.",
+          contactTitle: "Contact Us",
+          contactAddress:
+            "Av. Mohamed V Kissariat Mohamed V 2nd Floor No.3, Tetouan, Morocco",
+          contactPhone: "+212 531‑276392",
+          contactEmail: "goldenglowevents@gmail.com",
+          contactBtn: "Contact Me",
+        },
+        frs: {
+          vacances: "Vacances",
+          shopping: "Shopping",
+          spa: "Spa",
+          sport: "Sport",
+          about: "À propos",
+          contact: "Contact",
+          explore: "Explorez Maintenant",
+          headerTitle: "Votre Club FAMILY de premier plan au Maroc",
+          headerDesc:
+            "sport. Basés au Maroc, nous vous aidons à découvrir les meilleurs hôtels, restaurants, spas, boutiques, plages et piscines dans toutes les villes du royaume.",
+          aboutTitle: "À propos de nous",
+          aboutDesc:
+            "Basé à Tétouan, Family Club Maroc est dédié à la création des meilleures expériences en Vacances, Shopping, Spa et Sport dans toutes les villes marocaines. Nous vous connectons avec les meilleurs hôtels, restaurants, spas, destinations shopping, plages et piscines, garantissant un séjour exceptionnel.",
+          contactTitle: "Contactez-nous",
+          contactAddress:
+            "Av. Mohamed V Kissariat Mohamed V 2ème Étages n°3, Tétouan, Maroc",
+          contactPhone: "+212 531‑276392",
+          contactEmail: "goldenglowevents@gmail.com",
+          contactBtn: "Contactez-moi",
+        },
+      };
+
+      function updateLanguage(lang) {
+        // Update nav links
+        document.querySelectorAll('a[href="#vacances"]').forEach(el => el.textContent = translations[lang].vacances);
+        document.querySelectorAll('a[href="#shopping"]').forEach(el => el.textContent = translations[lang].shopping);
+        document.querySelectorAll('a[href="#spa"]').forEach(el => el.textContent = translations[lang].spa);
+        document.querySelectorAll('a[href="#sport"]').forEach(el => el.textContent = translations[lang].sport);
+        document.querySelectorAll('a[href="#about"]').forEach(el => el.textContent = translations[lang].about);
+        document.querySelectorAll('a[href="#contact"] > span').forEach(el => el.textContent = translations[lang].contact);
+
+        // Update header
+        document.querySelector("section.relative h1").textContent = translations[lang].headerTitle;
+        document.querySelector("section.relative p").textContent = translations[lang].headerDesc;
+        document.querySelector("section.relative a[href='#vacances']").textContent = translations[lang].explore;
+
+        // Update section titles and content
+        document.querySelector("#vacances h2").textContent = translations[lang].vacances;
+        document.querySelector("#shopping h2").textContent = translations[lang].shopping;
+        document.querySelector("#spa h2").textContent = translations[lang].spa;
+        document.querySelector("#sport h2").textContent = translations[lang].sport;
+        document.querySelector("#about h2").textContent = translations[lang].aboutTitle;
+        document.querySelector("#about p").textContent = translations[lang].aboutDesc;
+        document.querySelector("#contact h2").textContent = translations[lang].contactTitle;
+        const contactItems = document.querySelectorAll("#contact div.flex.items-center.space-x-4 p");
+        if (contactItems.length === 3) {
+          contactItems[0].textContent = translations[lang].contactAddress;
+          contactItems[1].textContent = translations[lang].contactPhone;
+          contactItems[2].textContent = translations[lang].contactEmail;
+        }
+        document.querySelector("#contact a").lastElementChild.textContent = translations[lang].contactBtn;
+      }
+
+      // Initialize language on page load
+      updateLanguage(languageSelect.value);
+
+      // Sync mobile language select on load
+      languageSelectMobile.value = languageSelect.value;
+
+      // Close mobile menu helper
+      function closeMobileMenu() {
+        mobileMenu.classList.remove("scale-y-100");
+        mobileMenu.classList.add("scale-y-0");
+      }
 
       // Animations avec les keyframes Tailwind
       tailwind.config = {
